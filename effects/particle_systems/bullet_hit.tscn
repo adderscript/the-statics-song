@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://obih2y1vffn3"]
+
+[ext_resource type="Script" uid="uid://7ws3216g2i6b" path="res://effects/particle_systems/particle_system.gd" id="1_c7i8r"]
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+offsets = PackedFloat32Array(0, 0.39506173, 1)
+colors = PackedColorArray(0.14509805, 0.13333334, 0.17254902, 1, 0.14509805, 0.13333334, 0.17254902, 1, 0.35686275, 0.37254903, 0.4392157, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angular_velocity_min = 180.0
+angular_velocity_max = 360.0
+scale_amount_min = 3.5
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_7mycd")
+script = ExtResource("1_c7i8r")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bld1vc3gw4t61"]
+
+[ext_resource type="Script" uid="uid://i2t2bghalwnf" path="res://managers/enemy_manager.gd" id="1_myqsb"]
+[ext_resource type="PackedScene" uid="uid://dh3ok3kmpxeo6" path="res://entities/enemies/runner/runner_enemy.tscn" id="2_qnn5l"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_myqsb")
+enemy_scene = ExtResource("2_qnn5l")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 3.0

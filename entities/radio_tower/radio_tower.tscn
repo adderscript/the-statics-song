@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ok64i1egp0xp"]
+
+[ext_resource type="Texture2D" uid="uid://cl6ly2q4rc8sw" path="res://assets/radiotower.png" id="1_ri3wn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y4fi"]
+size = Vector2(28, 3)
+
+[node name="RadioTower" type="StaticBody2D" groups=["radio_tower"]]
+y_sort_enabled = true
+collision_layer = 16
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_ri3wn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_3y4fi")

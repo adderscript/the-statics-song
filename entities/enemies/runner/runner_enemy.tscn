@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://dh3ok3kmpxeo6"]
+
+[ext_resource type="Script" uid="uid://vxt4ooycgl05" path="res://entities/enemies/runner/runner_enemy.gd" id="1_0s02a"]
+[ext_resource type="Shader" uid="uid://cmdhbmtkl77jm" path="res://effects/shaders/flash_white.gdshader" id="2_ehf2k"]
+[ext_resource type="Texture2D" uid="uid://dwa7efq64n4d7" path="res://assets/runner-enemy.png" id="3_0s02a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ksmh7"]
+friction = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3fvr7"]
+shader = ExtResource("2_ehf2k")
+shader_parameter/flash_strength = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehf2k"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k02b"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auuql"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf3e3"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eydgb"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3roo4"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8faxd"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exfa2"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(192, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc03x"]
+atlas = ExtResource("3_0s02a")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqg1m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehf2k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k02b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auuql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf3e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eydgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3roo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8faxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exfa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc03x")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tir2s"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksmh7"]
+radius = 150.0
+
+[node name="RunnerEnemy" type="RigidBody2D" groups=["enemies"]]
+collision_layer = 4
+collision_mask = 27
+physics_material_override = SubResource("PhysicsMaterial_ksmh7")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_0s02a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_3fvr7")
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_aqg1m")
+animation = &"run"
+frame = 6
+frame_progress = 0.56896824
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tir2s")
+
+[node name="PlayerDetectionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionRadius"]
+shape = SubResource("CircleShape2D_ksmh7")
+
+[node name="Origin" type="Node2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Origin"]
+avoidance_enabled = true
+
+[node name="PathfindingTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

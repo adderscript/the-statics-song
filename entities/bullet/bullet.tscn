@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8p0ldhhqd4q"]
+
+[ext_resource type="Script" uid="uid://55j24ldb6esw" path="res://entities/bullet/bullet.gd" id="1_2kyv7"]
+[ext_resource type="Texture2D" uid="uid://b6fwn22b5cjvc" path="res://assets/bullet.png" id="1_78c8h"]
+[ext_resource type="PackedScene" uid="uid://obih2y1vffn3" path="res://effects/particle_systems/bullet_hit.tscn" id="2_5h0jh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 2.0
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_2kyv7")
+hit_particles_scene = ExtResource("2_5h0jh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_78c8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1bvp3")
